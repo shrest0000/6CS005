@@ -58,17 +58,18 @@ printfs.
 */
 
 void crack(char *salt_and_encrypted){
-  int x, y, z;     // Loop counters
+  int a, x, y, z;     // Loop counters
   char salt[7];    // String used in hashing the password. Need space for \0
   char plain[7];   // The combination of letters currently being checked
   char *enc;       // Pointer to the encrypted password
   int count = 0;   // The number of combinations explored so far
 
   substr(salt, salt_and_encrypted, 0, 6);
+for(a='A'; a<='Z'; a++){
   for(x='A'; x<='Z'; x++){
     for(y='A'; y<='Z'; y++){
       for(z=0; z<=99; z++){
-        sprintf(plain, "%c%c%02d",x, y, z); 
+        sprintf(plain, "%c%c%c%02d",a,x, y, z); 
         enc = (char *) crypt(plain, salt);
         count++;
         if(strcmp(salt_and_encrypted, enc) == 0){
@@ -78,6 +79,7 @@ void crack(char *salt_and_encrypted){
         }
       }
     }
+  }
 }
   printf("%d solutions explored\n", count);
 }
