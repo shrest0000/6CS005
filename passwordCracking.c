@@ -81,6 +81,9 @@ void crack(char *salt_and_encrypted){
 }
   printf("%d solutions explored\n", count);
 }
+// Calculate the difference between two times. Returns zero on
+// success and the time difference through an argument. It will 
+// be unsuccessful if the start time is after the end time.
 
 int time_difference(struct timespec *start, 
                     struct timespec *finish, 
